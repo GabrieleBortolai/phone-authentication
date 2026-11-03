@@ -4,6 +4,7 @@
 
 # lab and university
 malga-vision.github.io
+gabrielebortolai.github.io
 github.com
 malga.unige.it
 unige.it
@@ -20,6 +21,7 @@ papers.miccai.org
 proceedings.neurips.cc
 orcid.org
 scholar.google.com
+avss2026.org
 
 # data, models, licenses
 huggingface.co

@@ -1,111 +1,99 @@
-# MaLGa academic page template
+# Leveraging Smartphone Inertial Data for User Authentication
 
-The starting point for MaLGa Vision paper pages. Each page is one static `index.html` in the
-MaLGa visual identity: no build step, no third-party scripts, and a check that runs before every deploy.
+Academic project page for the AVSS 2026 paper by **Gabriele Bortolai, Nicoletta Noceti,
+and Francesca Odone**, MaLGa-DIBRIS, University of Genoa.
 
-Live pages built on it:
-[PACER](https://malga-vision.github.io/PACER-wacv27-AcademicPage/) ·
-[CDPM-Align](https://malga-vision.github.io/CDPM-Align_AcademicPage/) ·
-[Hip landmarks](https://malga-vision.github.io/Landmarks-Hip-Conditions-AcademicPage/) ·
-[Diffusing DeBias](https://malga-vision.github.io/DiffusingDeBias-AcademicPage/) ·
-[FairerXRay](https://malga-vision.github.io/FairerXRay-LandmarkDetection-AcademicPage/) ·
-[DiffusionXray](https://malga-vision.github.io/DiffusionXray-FewShot-LandmarkDetection-AcademicPage/) ·
-[In-domain transfer](https://malga-vision.github.io/InDomain-TransferLearning-LandmarkDetection-AcademicPage/)
+The paper studies gait authentication from smartphone acceleration, angular velocity,
+and gravity. An unsupervised LSTM autoencoder learns a shared representation with
+middle fusion; a personal One-Class SVM models each user's gait. Experiments use
+50 participants and 63,316 gait segments from the MARCH dataset.
 
-## Start a page for a new paper
+This repository contains the project website and paper PDF. It does not contain the
+model implementation or dataset. The MARCH dataset is publicly available through the
+[Malga-Vision/MARCH repository](https://github.com/Malga-Vision/MARCH).
 
-1. Click **Use this template** and create `Malga-Vision/<Paper>-AcademicPage` (public).
-2. In the new repository, open **Settings > Pages** and set **Source** to **GitHub Actions**.
-3. Edit `index.html`. Every placeholder is marked in comments; replace the canonical URL,
-   metadata, JSON-LD, hero, sections and BibTeX. Delete sections you do not need and the matching
-   links in `site-nav`. Put figures in `static/images/`, PDFs in `static/pdfs/`, videos in `static/videos/`.
-4. Add the paper to `tools/projects.json` in **this** template repository (newest first), then render the
-   shared blocks on the new page:
+## Preview and validation
 
-   ```
-   python tools/render_shared.py index.html --page-repo <Paper>-AcademicPage --code-repo <CodeRepo>
-   ```
+The site is a single static HTML page, with self-hosted fonts, styles, and JavaScript.
+No build step or package installation is required.
 
-   Re-run the same command on the other pages so their "Related work from our lab" lists the new paper.
-5. Check the page and preview it:
+```bash
+python3 tools/page_guard.py
+python3 -m http.server 8000 --bind 127.0.0.1
+```
 
-   ```
-   python tools/page_guard.py
-   python -m http.server     # then open http://localhost:8000
-   ```
+Open [the local preview](http://localhost:8000/). The guard checks local references,
+section anchors, metadata placeholders, the Content Security Policy, allowed external
+links, and asset sizes.
 
-6. Push. The **Check and deploy page** workflow runs the guard and publishes only if it passes.
-7. Update `llms.txt` and `sitemap.xml`, and add the URL to Google Search Console
-   (URL-prefix property, HTML tag method; the verification tag is already in the template).
+## Page contents
 
-## What is in the box
+| Path | Purpose |
+| --- | --- |
+| `index.html` | Paper title, authors, verbatim abstract, method, dataset, results, FAQ, citation, and metadata |
+| `static/pdfs/paper.pdf` | Unmodified author-supplied six-page paper |
+| `static/images/pipeline.png` | Figure 1: authentication pipeline |
+| `static/images/segmentation.png` | Figure 2: ankle-IMU gait segmentation |
+| `static/images/latent-size.png` | Figure 4: latent-size validation study |
+| `static/images/fusion.png` | Figure 6: middle versus early fusion |
+| `static/malga/` | Shared MaLGa styles, script, fonts, logos, and icons |
+| `llms.txt`, `sitemap.xml` | Machine-readable summary and canonical page URL |
+| `tools/projects.json` | Related lab projects, including this page |
+| `tools/render_shared.py` | Related-project and footer renderer |
 
-| Path | What it is | Edit it? |
-|---|---|---|
-| `index.html` | The page. Head metadata, sections, BibTeX. | Yes |
-| `static/malga/` | Shared stylesheet, script, fonts, logos, icons. Identical on every page. | Only here, then copy to the pages |
-| `static/images/`, `static/pdfs/`, `static/videos/` | The paper's figures and files. | Yes |
-| `static/css/page.css` | Optional page-only styles, linked after `malga.css`. Avoid when possible. | Rarely |
-| `tools/render_shared.py` | Writes "Related work from our lab" and the footer from `tools/projects.json`. | No |
-| `tools/page_guard.py` | Security and integrity checks. | No |
-| `tools/allowed-domains.txt` | Domains the page may link to. | Add real domains only |
-| `.github/workflows/pages.yml` | Runs the guard, then deploys to GitHub Pages. | No |
+The figures are cropped directly from the supplied PDF. Tables I and II are transcribed
+as accessible HTML tables. Results retain their original mean and standard-deviation
+values, with FAR expressed as a fraction. The abstract and FAQ text are mirrored in
+JSON-LD; keep the visible and structured versions synchronized when editing.
 
-## Components
+The page distinguishes smartphone authentication inputs from the additional ankle IMU
+used for segmentation, and simulated impairment from actual injuries. The final
+configuration uses the 32-dimensional representation selected in Section V-B and
+reported in Table II. No code, arXiv, poster, or video links are shown because none were
+provided. Add them when available.
 
-All classes live in `static/malga/malga.css`; `index.html` shows each one in use.
+Conference naming and dates follow the [official AVSS 2026 website](https://www.avss2026.org/).
+AVSS 2026 is inferred from the supplied paper's conference directory; the PDF itself
+contains no proceedings header. The citation omits unverified DOI, proceedings page
+numbers, and publisher fields.
 
-- **Hero**: venue line, acronym and title, authors, affiliations, link buttons.
-  Unavailable links stay visible as disabled buttons marked "soon".
-- **Teaser** figure with an optional TL;DR.
-- **Sections** with ring-marked titles, alternating white and light grey backgrounds.
-- **Figures** (`figure.figure`), side-by-side grids (`figure-grid`), equations (`p.eq`).
-- **Tables** (`data-table`): booktabs-style rules, dataset row groups, `best` / `second` cells, highlighted `ours` rows, horizontal scroll on phones.
-- **Highlights** (spot cards) and **stats** (key numbers).
-- **Media**: video, poster and slides cards, with a "Coming soon" placeholder.
-- **FAQ** (`details`), kept identical to the FAQPage JSON-LD.
-- **Citation** block with a copy button.
-- **Related work**: the lab's papers as a connected timeline, the current one marked.
+## Hosting
 
-## Design
+The canonical URL is configured for this repository's GitHub remote:
 
-It follows the MaLGa identity used on [malga.unige.it](https://malga.unige.it/):
+[https://gabrielebortolai.github.io/phone-authentication/](https://gabrielebortolai.github.io/phone-authentication/)
 
-- coral `#FE6767` as the only accent (links use the darker `#B84545` so body text stays readable),
-  UniGe night blue `#0F0E36` for the footer and primary buttons, neutral greys;
-- Roboto Slab for headings (the open stand-in for Adelle) and Fira Sans for text, self-hosted;
-- square corners, thin `#E2E2E2` rules, uppercase buttons;
-- the logo's node-and-arc graph as the one decorative motif, in the hero and the related-work timeline.
+To publish, set **Settings > Pages > Source** to **GitHub Actions**, then push to the
+repository's default branch. The existing **Check and deploy page** workflow runs the
+page guard before publishing. Configuring the page locally does not publish it.
 
-## Security
+If the repository moves or uses a custom domain, update the canonical URL, social and
+Scholar metadata, JSON-LD URLs, `llms.txt`, `sitemap.xml`, and this project's `page_url`
+in `tools/projects.json`. Add the new host to `tools/allowed-domains.txt`.
 
-The pages are static, so the realistic threats are a compromised third-party script, injected
-spam links ("SEO injection"), doorway pages added to the repository, and clickjacking-style tricks.
-The template closes them off:
+## Refresh shared blocks
 
-- **Content Security Policy** in a meta tag: scripts, styles, fonts and media only from the page itself;
-  no inline scripts or styles, no frames, forms, plugins or `<base>`.
-- **No third-party code**: fonts, icons and the small script are in the repository.
-- **Page guard** (`tools/page_guard.py`) fails the deploy when it finds inline or external scripts,
-  event-handler attributes, `javascript:` URLs, inline styles, iframes or forms, links to domains outside
-  `tools/allowed-domains.txt`, links inside hidden elements, extra HTML pages, spam keywords, scripts in SVGs,
-  sitemap URLs outside the page, broken local references, files over 25 MB, a missing or weakened CSP,
-  or leftover template placeholders.
-- **Deploy gate**: GitHub Pages publishes from the workflow, so a commit that fails the guard is never served.
-  Workflow actions are pinned to commit SHAs and run with read-only permissions.
-- External links use `rel="noopener noreferrer"`; the referrer policy is `strict-origin-when-cross-origin`.
+This page is hosted under a personal account, while related projects and branding belong
+to the MaLGa organization. Preserve that distinction when regenerating the footer:
 
-Recommended repository settings: protect the default branch against force pushes and deletion, and
-require the `guard` check on pull requests. See [SECURITY.md](SECURITY.md) to report a problem.
+```bash
+python3 tools/render_shared.py index.html --page-repo phone-authentication --page-owner GabrieleBortolai
+python3 tools/page_guard.py
+```
 
-## Updating the shared files on existing pages
+`--page-owner` changes the page-source link without changing the lab links. Each entry
+in `tools/projects.json` may supply `page_url` for a page hosted outside the lab's default
+GitHub Pages domain.
 
-Change `static/malga/` or `tools/` here, then copy them into each page repository and re-run
-`tools/render_shared.py` and `tools/page_guard.py` there. The files are plain copies, so a page keeps
-working even if this template changes.
+## Credits and licenses
 
-## Licenses
+Built with the [MaLGa academic page template](https://github.com/Malga-Vision/malga-academic-page-template).
+The shared visual identity and security checks are retained.
 
-Code (HTML, CSS, JavaScript, Python): MIT, see [LICENSE](LICENSE).
-Fira Sans: SIL Open Font License 1.1. Roboto Slab: Apache License 2.0 (license files in `static/malga/fonts/`).
-The MaLGa and University of Genoa logos belong to their owners and are included only for MaLGa pages.
+- Website code: MIT; see [LICENSE](LICENSE).
+- Paper text and figures: their respective authors and rights holders; the website's code license does not relicense the paper.
+- Fira Sans: SIL Open Font License 1.1; Roboto Slab: Apache License 2.0. License files are in `static/malga/fonts/`.
+- MaLGa and University of Genoa logos belong to their owners.
+
+The research was supported by the MARCH project (FA86552317074), funded by the Air Force
+Office of Scientific Research. See [SECURITY.md](SECURITY.md) for security reporting.

@@ -2,73 +2,128 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <!-- Keep the CSP right after charset. tools/page_guard.py fails if it is missing or weakened. -->
+  <!-- Keep the CSP directly after charset. -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!--
-    REPLACE everything marked ACRONYM / Paper title / VENUE / REPO below.
-    PAGE_URL = https://malga-vision.github.io/<this-repo>/
-  -->
-  <title>ACRONYM: Paper title (VENUE YEAR)</title>
-  <meta name="description" content="One or two sentences: what the method does and the main result. VENUE YEAR.">
-  <meta name="keywords" content="ACRONYM, topic, topic, VENUE YEAR">
-  <meta name="author" content="First Author, Second Author, Last Author">
+  <title>Leveraging Smartphone Inertial Data for User Authentication | AVSS 2026</title>
+  <meta name="description" content="Smartphone gait authentication with an LSTM autoencoder and One-Class SVM, evaluated on 50 participants across seven walking conditions. AVSS 2026.">
+  <meta name="keywords" content="gait authentication, smartphone, inertial data, LSTM autoencoder, One-Class SVM, multimodal fusion, MARCH dataset, AVSS 2026">
+  <meta name="author" content="Gabriele Bortolai, Nicoletta Noceti, Francesca Odone">
   <meta name="robots" content="index, follow, max-image-preview:large">
-  <!-- Google Search Console (MaLGa-Vision property code; keep it) -->
   <meta name="google-site-verification" content="vQwwpIz9eQydXOOjXSr4RgmKe9jPycMfCkP4ZTIk1Ss">
-  <link rel="canonical" href="https://malga-vision.github.io/malga-academic-page-template/">
+  <link rel="canonical" href="https://gabrielebortolai.github.io/phone-authentication/">
 
-  <!-- Open Graph / social preview: og:image must be a JPG or PNG (about 1200x630), not SVG -->
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="ACRONYM (VENUE YEAR)">
-  <meta property="og:title" content="ACRONYM: Paper title">
-  <meta property="og:description" content="One sentence for link previews.">
-  <meta property="og:url" content="https://malga-vision.github.io/malga-academic-page-template/">
-  <meta property="og:image" content="https://malga-vision.github.io/malga-academic-page-template/static/images/teaser.jpg">
-  <meta property="og:image:alt" content="What the teaser figure shows">
+  <meta property="og:site_name" content="Smartphone Gait Authentication | MaLGa">
+  <meta property="og:title" content="Leveraging Smartphone Inertial Data for User Authentication">
+  <meta property="og:description" content="Smartphone gait authentication with an LSTM autoencoder and One-Class SVM, evaluated on 50 participants across seven walking conditions. AVSS 2026.">
+  <meta property="og:url" content="https://gabrielebortolai.github.io/phone-authentication/">
+  <meta property="og:image" content="https://gabrielebortolai.github.io/phone-authentication/static/images/pipeline.png">
+  <meta property="og:image:width" content="1548">
+  <meta property="og:image:height" content="868">
+  <meta property="og:image:alt" content="Three inertial signals pass through an LSTM encoder and a user-specific One-Class SVM for gait authentication.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ACRONYM: Paper title (VENUE YEAR)">
-  <meta name="twitter:description" content="One sentence for link previews.">
-  <meta name="twitter:image" content="https://malga-vision.github.io/malga-academic-page-template/static/images/teaser.jpg">
+  <meta name="twitter:title" content="Leveraging Smartphone Inertial Data for User Authentication | AVSS 2026">
+  <meta name="twitter:description" content="Smartphone gait authentication with an LSTM autoencoder and One-Class SVM, evaluated on 50 participants across seven walking conditions. AVSS 2026.">
+  <meta name="twitter:image" content="https://gabrielebortolai.github.io/phone-authentication/static/images/pipeline.png">
+  <meta name="twitter:image:alt" content="LSTM mid-fusion encoder and One-Class SVM authentication pipeline.">
 
-  <!-- Google Scholar. Add citation_pdf_url, citation_doi, citation_firstpage/lastpage when known. -->
-  <meta name="citation_title" content="ACRONYM: Paper title">
-  <meta name="citation_author" content="Author, First">
-  <meta name="citation_author" content="Author, Second">
-  <meta name="citation_conference_title" content="Full proceedings title">
-  <meta name="citation_publication_date" content="YEAR">
-
-  <!-- Structured data. Keep the FAQ answers identical to the visible FAQ section. -->
+  <meta name="citation_title" content="Leveraging Smartphone Inertial Data for User Authentication">
+  <meta name="citation_author" content="Bortolai, Gabriele">
+  <meta name="citation_author" content="Noceti, Nicoletta">
+  <meta name="citation_author" content="Odone, Francesca">
+  <meta name="citation_conference_title" content="22nd International Conference on Advanced Visual and Signal-Based Systems (AVSS)">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_pdf_url" content="https://gabrielebortolai.github.io/phone-authentication/static/pdfs/paper.pdf">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "ScholarlyArticle",
-      "@id": "https://malga-vision.github.io/malga-academic-page-template/#article",
-      "headline": "ACRONYM: Paper title",
-      "abstract": "Paste the abstract verbatim.",
+      "@id": "https://gabrielebortolai.github.io/phone-authentication/#article",
+      "headline": "Leveraging Smartphone Inertial Data for User Authentication",
+      "abstract": "Walking is a fundamental human activity, and gait patterns exhibit distinctive characteristics across individuals, making them suitable for biometric authentication. Recent advances in mobile technology have enabled the integration of Inertial Measurement Unit sensors in smartphones, allowing unobtrusive user authentication using personal devices. In this work, we propose a gait-based authentication framework leveraging inertial data, including acceleration, angular velocity, and gravity, acquired from a smartphone. The multimodal time series are fused and encoded into a latent representation using an LSTM-based autoencoder. A One-Class Support Vector Machine is then trained on this latent space to model the unique walking patterns of each user. Experimental results demonstrate the effectiveness of the proposed approach and highlight its robustness to variations in walking conditions, including scenarios involving gait alterations due to injuries. These findings support the potential of smartphone-based gait authentication as a practical and reliable biometric solution.",
       "author": [
-        { "@type": "Person", "name": "First Author", "affiliation": { "@id": "https://malga-vision.github.io/malga-academic-page-template/#unige" } }
+        {
+          "@type": "Person",
+          "name": "Gabriele Bortolai",
+          "affiliation": {
+            "@id": "https://gabrielebortolai.github.io/phone-authentication/#unige"
+          }
+        },
+        {
+          "@type": "Person",
+          "name": "Nicoletta Noceti",
+          "affiliation": {
+            "@id": "https://gabrielebortolai.github.io/phone-authentication/#unige"
+          }
+        },
+        {
+          "@type": "Person",
+          "name": "Francesca Odone",
+          "affiliation": {
+            "@id": "https://gabrielebortolai.github.io/phone-authentication/#unige"
+          }
+        }
       ],
-      "datePublished": "YEAR",
+      "datePublished": "2026",
       "inLanguage": "en",
-      "image": "https://malga-vision.github.io/malga-academic-page-template/static/images/teaser.jpg",
-      "url": "https://malga-vision.github.io/malga-academic-page-template/"
+      "isPartOf": {
+        "@type": "PublicationVolume",
+        "name": "22nd International Conference on Advanced Visual and Signal-Based Systems (AVSS)"
+      },
+      "image": "https://gabrielebortolai.github.io/phone-authentication/static/images/pipeline.png",
+      "url": "https://gabrielebortolai.github.io/phone-authentication/",
+      "encoding": {
+        "@type": "MediaObject",
+        "contentUrl": "https://gabrielebortolai.github.io/phone-authentication/static/pdfs/paper.pdf",
+        "encodingFormat": "application/pdf"
+      }
     },
     {
       "@type": "Organization",
-      "@id": "https://malga-vision.github.io/malga-academic-page-template/#unige",
+      "@id": "https://gabrielebortolai.github.io/phone-authentication/#unige",
       "name": "MaLGa-DIBRIS, University of Genoa",
       "url": "https://malga.unige.it/"
     },
     {
       "@type": "FAQPage",
-      "@id": "https://malga-vision.github.io/malga-academic-page-template/#faq",
+      "@id": "https://gabrielebortolai.github.io/phone-authentication/#faq",
       "mainEntity": [
-        { "@type": "Question", "name": "What is ACRONYM?", "acceptedAnswer": { "@type": "Answer", "text": "Same text as the visible answer." } }
+        {
+          "@type": "Question",
+          "name": "Does the method require labelled identities or impostor data during training?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The shared autoencoder learns a gait representation through unsupervised reconstruction. Each One-Class SVM is then trained on the target user's gait segments, without negative-class examples during that training stage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the study use only a smartphone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Authentication features come from smartphone acceleration, angular velocity, and gravity. In this initial study, an auxiliary IMU on the right ankle provides gait-cycle boundaries that are transferred to the smartphone recordings."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do the altered walking conditions represent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "All 50 participants had no motor impairment. Cases 5 and 6 use a 1 kg right-ankle weight to simulate an injury; Case 7 evaluates variable speed and walking-surface slope. These are controlled treadmill experiments."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I access the MARCH dataset?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The MARCH dataset is publicly available through the Malga-Vision/MARCH repository on GitHub."
+          }
+        }
       ]
     }
   ]
@@ -77,23 +132,20 @@
 
   <link rel="icon" type="image/svg+xml" href="static/malga/img/malga-mark.svg">
   <link rel="stylesheet" href="static/malga/malga.css">
-  <!-- Page-only styles, if ever needed: <link rel="stylesheet" href="static/css/page.css"> -->
   <script src="static/malga/malga.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-
   <header class="site-header">
     <div class="wrap">
       <a class="site-header__logo" href="https://malga.unige.it/" target="_blank" rel="noopener noreferrer">
         <img src="static/malga/img/malga-logo.svg" width="231" height="71" alt="MaLGa, Machine Learning Genoa Center">
       </a>
-      <!-- One link per section present on the page -->
       <nav class="site-nav" aria-label="Sections">
         <a href="#abstract">Abstract</a>
         <a href="#method">Method</a>
+        <a href="#dataset">Dataset</a>
         <a href="#results">Results</a>
-        <a href="#media">Media</a>
         <a href="#faq">FAQ</a>
         <a href="#cite">Cite</a>
       </nav>
@@ -103,123 +155,156 @@
   <main id="main">
     <section class="hero">
       <div class="wrap">
-        <p class="hero__venue"><em>VENUE YEAR</em> City, Country, Month Day&ndash;Day, YEAR</p>
-        <!-- "ACRONYM: subtitle" titles use both spans; other titles use only hero__title -->
-        <h1>
-          <span class="hero__acronym">ACRONYM</span>
-          <span class="hero__title">Paper title, as in the proceedings</span>
-        </h1>
+        <p class="hero__venue"><em><a href="https://www.avss2026.org/" target="_blank" rel="noopener noreferrer">AVSS 2026</a></em> Lecce, Italy &middot; August 31&ndash;September 3, 2026</p>
+        <h1><span class="hero__title">Leveraging Smartphone Inertial Data for User Authentication</span></h1>
         <p class="authors">
-          <a href="https://scholar.google.com/" target="_blank" rel="noopener noreferrer">First Author</a><sup>1</sup>,
-          <a href="https://scholar.google.com/" target="_blank" rel="noopener noreferrer">Second Author</a><sup>1,2</sup>,
-          <span>Last Author</span><sup>1</sup>
+          <a href="mailto:gabriele.bortolai@edu.unige.it">Gabriele Bortolai</a>,
+          <a href="mailto:nicoletta.noceti@unige.it">Nicoletta Noceti</a>,
+          <a href="mailto:francesca.odone@unige.it">Francesca Odone</a>
         </p>
-        <p class="affiliations">
-          <span><sup>1</sup>MaLGa-DIBRIS, University of Genoa, Italy</span>
-          <span><sup>2</sup>Other institution, Country</span>
-        </p>
-        <!-- Optional: <p class="author-note">* Equal contribution</p> -->
-        <!-- Paper is the primary button once it exists; before that, Code is. Unavailable items stay as disabled spans. -->
+        <p class="affiliations"><span>MaLGa-DIBRIS, University of Genoa, Italy</span></p>
         <ul class="links">
-          <!-- <li><a class="button button--primary" href="static/pdfs/paper.pdf"><svg class="icon" aria-hidden="true"><use href="static/malga/img/icons.svg#i-paper"/></svg>Paper</a></li> -->
-          <li><span class="button" aria-disabled="true"><svg class="icon" aria-hidden="true"><use href="static/malga/img/icons.svg#i-paper"/></svg>Paper <small>soon</small></span></li>
-          <li><span class="button" aria-disabled="true"><svg class="icon" aria-hidden="true"><use href="static/malga/img/icons.svg#i-preprint"/></svg>arXiv <small>soon</small></span></li>
-          <li><a class="button button--primary" href="https://github.com/Malga-Vision" target="_blank" rel="noopener noreferrer"><svg class="icon icon--fill" aria-hidden="true"><use href="static/malga/img/icons.svg#i-github"/></svg>Code</a></li>
-          <li><a class="button" href="#media"><svg class="icon" aria-hidden="true"><use href="static/malga/img/icons.svg#i-poster"/></svg>Poster &amp; video</a></li>
+          <li><a class="button button--primary" href="static/pdfs/paper.pdf"><svg class="icon" aria-hidden="true"><use href="static/malga/img/icons.svg#i-paper"/></svg>Paper PDF</a></li>
+          <li><a class="button" href="https://github.com/Malga-Vision/MARCH" target="_blank" rel="noopener noreferrer"><svg class="icon icon--fill" aria-hidden="true"><use href="static/malga/img/icons.svg#i-github"/></svg>MARCH dataset</a></li>
           <li><a class="button" href="#cite"><svg class="icon" aria-hidden="true"><use href="static/malga/img/icons.svg#i-cite"/></svg>BibTeX</a></li>
         </ul>
       </div>
     </section>
 
-    <section class="teaser" aria-label="Teaser">
+    <section class="teaser" aria-label="Pipeline overview">
       <div class="wrap">
         <figure class="figure">
           <div class="figure__frame">
-            <img src="static/images/teaser.svg" width="1600" height="900" alt="Describe what the teaser figure shows">
+            <a href="static/images/pipeline.png" aria-label="View the full-size authentication pipeline">
+              <img src="static/images/pipeline.png" width="1548" height="868" fetchpriority="high" alt="Acceleration, angular velocity, and gravity are encoded by separate LSTMs, fused by a global LSTM, and classified as the target user's gait or an anomaly by a One-Class SVM. The lower panel unfolds the recurrent encoder over time.">
+            </a>
           </div>
-          <figcaption><strong>Figure 1.</strong> Caption copied from the paper.</figcaption>
+          <figcaption><strong>Figure 1 from the paper.</strong> A sketch of our pipeline. We address user authentication as an anomaly detection task. We learn an unsupervised gait representation using an LSTM-based encoding, and then input such representations to a One-Class Support Vector Machine (OCSVM). While the unsupervised gait representation is common, a OCSVM model is trained for each identity to be identified.</figcaption>
         </figure>
-        <p class="tldr"><strong>TL;DR.</strong> One sentence a busy reader can take away.</p>
+        <p class="tldr"><strong>TL;DR.</strong> Learn a shared gait representation from three smartphone inertial signals, then train a personal One-Class SVM to recognize each user. LSTM middle fusion achieves a mean F1 of 0.76 and a mean false acceptance rate of 0.004 under baseline walking conditions.</p>
       </div>
     </section>
 
     <section class="section" id="abstract">
       <div class="wrap">
         <h2 class="section__title">Abstract</h2>
-        <div class="prose abstract">
-          <p>Paste the abstract verbatim from the camera-ready paper.</p>
-        </div>
+        <div class="prose abstract"><p>Walking is a fundamental human activity, and gait patterns exhibit distinctive characteristics across individuals, making them suitable for biometric authentication. Recent advances in mobile technology have enabled the integration of Inertial Measurement Unit sensors in smartphones, allowing unobtrusive user authentication using personal devices. In this work, we propose a gait-based authentication framework leveraging inertial data, including acceleration, angular velocity, and gravity, acquired from a smartphone. The multimodal time series are fused and encoded into a latent representation using an LSTM-based autoencoder. A One-Class Support Vector Machine is then trained on this latent space to model the unique walking patterns of each user. Experimental results demonstrate the effectiveness of the proposed approach and highlight its robustness to variations in walking conditions, including scenarios involving gait alterations due to injuries. These findings support the potential of smartphone-based gait authentication as a practical and reliable biometric solution.</p></div>
       </div>
     </section>
 
-    <!-- Sections after the abstract alternate: section--alt, plain, section--alt, ... -->
     <section class="section section--alt" id="method">
       <div class="wrap">
-        <h2 class="section__title">Method</h2>
-        <figure class="figure">
-          <div class="figure__frame">
-            <img src="static/images/method.svg" width="1600" height="600" loading="lazy" alt="Describe the method figure">
-          </div>
-          <figcaption><strong>Figure 2. Overview.</strong> Caption copied from the paper.</figcaption>
-        </figure>
+        <h2 class="section__title">Authentication as anomaly detection</h2>
         <div class="prose">
-          <p>Method description in the paper's words.</p>
-          <h3>A component</h3>
-          <p>Equations go in a <code>p.eq</code> block, written with HTML entities:</p>
-          <p class="eq"><i>L</i> = <i>L</i><sub>task</sub> + &lambda; <i>L</i><sub>aux</sub></p>
+          <p>The pipeline combines a shared, unsupervised representation with a separate authentication model for each user. Each gait cycle contains the x, y, and z components of acceleration, angular velocity, and gravity: nine input channels in total.</p>
         </div>
         <ul class="highlights">
-          <li><h3>Contribution one</h3><p>Short description.</p></li>
-          <li><h3>Contribution two</h3><p>Short description.</p></li>
-          <li><h3>Contribution three</h3><p>Short description.</p></li>
+          <li><h3>Learn each modality</h3><p>Three LSTM branches process acceleration, angular velocity, and gravity independently. An autoencoder learns through sequence reconstruction.</p></li>
+          <li><h3>Fuse the representations</h3><p>The branch outputs are concatenated and passed to a global LSTM. The validation study selects a 32-dimensional gait encoding for the final experiments.</p></li>
+          <li><h3>Model the individual</h3><p>A personal One-Class SVM learns the target user's gait distribution. Deviations from that distribution are treated as authentication anomalies.</p></li>
         </ul>
+        <figure class="figure">
+          <div class="figure__frame">
+            <img src="static/images/fusion.png" width="1032" height="224" loading="lazy" alt="Middle fusion on the left first encodes acceleration, angular velocity, and gravity separately, then combines them. Early fusion on the right stacks the three signals before encoding.">
+          </div>
+          <figcaption><strong>Figure 6 from the paper.</strong> Input features fusion strategies: with middle fusion (left) features are first processed independently and later combined, while with early fusion (right) features are stacked in a multi-channel input tensor.</figcaption>
+        </figure>
+        <div class="prose">
+          <h3>Training and model selection</h3>
+          <p>Training uses the baseline walking conditions (Cases 1&ndash;4). For the autoencoder, 80% of the segments from each time series are sampled for training and 20% for validation. Reconstruction uses mean squared error and the Adam optimizer, with learning-rate reduction and early stopping.</p>
+          <p>The One-Class SVM uses a sequential split of 64% training, 16% validation, and 20% test segments. Its regularization parameter and decision threshold are selected by validation F1 for each identity. These are segment-level evaluations on the study participants.</p>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="results">
+    <section class="section" id="dataset">
       <div class="wrap">
-        <h2 class="section__title">Experimental results</h2>
+        <h2 class="section__title">The MARCH dataset</h2>
         <div class="prose">
-          <p>Datasets, protocol, and how to read the table. <b>Bold</b> is best, <u>underlined</u> second.</p>
+          <p>MARCH contains treadmill recordings from 50 participants with no motor impairment (26 male and 24 female; age 26.8 &plusmn; 2.9 years). A Samsung Galaxy S25 in the left back trouser pocket records acceleration, angular velocity, and gravity at 50 Hz. Each participant completes a five-minute acquisition in each of seven controlled conditions.</p>
         </div>
+        <ul class="stats">
+          <li><strong>50</strong><span>participants</span></li>
+          <li><strong>63,316</strong><span>segmented gait cycles</span></li>
+          <li><strong>7</strong><span>walking conditions</span></li>
+          <li><strong>50 Hz</strong><span>sampling frequency</span></li>
+        </ul>
         <div class="table-block">
-          <p class="table-caption"><strong>Table 1.</strong> Caption copied from the paper.</p>
-          <div class="table-scroll">
-            <table class="data-table">
-              <thead>
-                <tr><th class="left" scope="col">Method</th><th scope="col">Metric A&darr;</th><th scope="col">Metric B&uarr;</th></tr>
-              </thead>
+          <p class="table-caption" id="conditions-caption"><strong>Table I from the paper.</strong> Acquisition conditions. Cases 5 and 6 use a 1 kg right-ankle weight to simulate an injury.</p>
+          <div class="table-scroll" tabindex="0" role="region" aria-labelledby="conditions-caption">
+            <table class="data-table" aria-labelledby="conditions-caption">
+              <thead><tr><th class="left" scope="col">Condition</th><th scope="col">Speed</th><th scope="col">Shoes</th><th scope="col">Ankle weight</th></tr></thead>
               <tbody>
-                <tr><th scope="rowgroup" colspan="3">Dataset one</th></tr>
-                <tr><th scope="row">Baseline</th><td class="second">2.00</td><td>80.0</td></tr>
-                <tr class="ours"><th scope="row">ACRONYM (ours)</th><td class="best">1.50</td><td class="best">85.0</td></tr>
+                <tr><th scope="row">Case 1</th><td>2 km/h</td><td>Yes</td><td>No</td></tr>
+                <tr><th scope="row">Case 2</th><td>2 km/h</td><td>No</td><td>No</td></tr>
+                <tr><th scope="row">Case 3</th><td>Self-selected, fixed</td><td>Yes</td><td>No</td></tr>
+                <tr><th scope="row">Case 4</th><td>Self-selected, fixed</td><td>No</td><td>No</td></tr>
+                <tr><th scope="row">Case 5</th><td>Self-selected, fixed</td><td>Yes</td><td>1 kg</td></tr>
+                <tr><th scope="row">Case 6</th><td>Self-selected, fixed</td><td>No</td><td>1 kg</td></tr>
+                <tr><th scope="row">Case 7</th><td>Variable, predefined</td><td>Yes</td><td>No</td></tr>
               </tbody>
             </table>
           </div>
+          <p class="table-note">In Cases 3&ndash;6, participants select a comfortable fixed speed between 2 and 5 km/h. Case 7 probes variations in speed and walking-surface slope.</p>
         </div>
-        <ul class="stats">
-          <li><strong>&minus;25%</strong><span>error on dataset one</span></li>
-          <li><strong>6&times;</strong><span>faster than the baselines</span></li>
-        </ul>
+        <div class="prose">
+          <h3>Gait-cycle segmentation</h3>
+          <p>In this initial study, an auxiliary IMU on the right ankle supplies gait-cycle boundaries. Local minima of the ankle gravity signal define the segments; the same time boundaries are applied to the smartphone recordings. Segments are normalized to [0, 1] before processing.</p>
+        </div>
+        <figure class="figure measure">
+          <div class="figure__frame">
+            <img src="static/images/segmentation.png" width="680" height="474" loading="lazy" alt="Overlaid gait cycles from the right-ankle IMU's x-axis gravity signal, with the average segment shown as a dashed black curve.">
+          </div>
+          <figcaption><strong>Figure 2 from the paper.</strong> Gravity-based segmentation of the signal obtained from the right ankle IMU. The dashed black line represents the average (mean) signal calculated across all segments.</figcaption>
+        </figure>
+        <div class="prose">
+          <p><strong>Data access.</strong> The MARCH dataset is now publicly available. Access the dataset through the <a href="https://github.com/Malga-Vision/MARCH" target="_blank" rel="noopener noreferrer">MARCH repository on GitHub</a>.</p>
+        </div>
       </div>
     </section>
 
-    <section class="section section--alt" id="media">
+    <section class="section section--alt" id="results">
       <div class="wrap">
-        <h2 class="section__title">Video and poster</h2>
-        <div class="media-grid">
-          <div class="media-card" id="video">
-            <h3>Video</h3>
-            <!-- <video controls playsinline preload="metadata" poster="static/images/video_poster.jpg"><source src="static/videos/video.mp4" type="video/mp4"></video>
-                 Keep videos under 25 MB: H.264 720p, CRF 28, -movflags +faststart. -->
-            <div class="placeholder"><span>Coming soon</span></div>
+        <h2 class="section__title">Experimental results</h2>
+        <div class="prose">
+          <p>We compare LSTM and convolutional encoders with middle or early fusion, using 16- or 32-dimensional latent representations. Evaluation covers baseline walking (Cases 1&ndash;4), simulated impairment (Cases 5&ndash;6), and variable speed and slope (Case 7).</p>
+          <p>The 32-dimensional LSTM with middle fusion gives the highest mean F1 and lowest mean false acceptance rate (FAR) in all three scenarios. F1 decreases under altered walking conditions, while FAR remains low.</p>
+        </div>
+        <div class="table-block">
+          <p class="table-caption" id="results-caption"><strong>Table II from the paper.</strong> Comparison with alternative feature encoders. Values are mean &plusmn; standard deviation. Higher F1 and lower FAR are better; <strong>bold</strong> marks the best mean in each column. FAR is reported as a fraction.</p>
+          <div class="table-scroll" tabindex="0" role="region" aria-labelledby="results-caption">
+            <table class="data-table" aria-labelledby="results-caption">
+              <thead>
+                <tr><th class="left" scope="col" rowspan="2">Encoder (latent size)</th><th scope="col" rowspan="2">Fusion</th><th scope="colgroup" colspan="2">Cases 1&ndash;4: baseline</th><th scope="colgroup" colspan="2">Cases 5&ndash;6: impairment</th><th scope="colgroup" colspan="2">Case 7: variable speed</th></tr>
+                <tr><th scope="col">F1 &uarr;</th><th scope="col">FAR &darr;</th><th scope="col">F1 &uarr;</th><th scope="col">FAR &darr;</th><th scope="col">F1 &uarr;</th><th scope="col">FAR &darr;</th></tr>
+              </thead>
+              <tbody>
+                <tr class="ours"><th scope="row">LSTM (32)</th><td>Middle</td><td class="best">0.76 ± 0.18</td><td class="best">0.004 ± 0.006</td><td class="best">0.53 ± 0.31</td><td class="best">0.002 ± 0.003</td><td class="best">0.44 ± 0.28</td><td class="best">0.002 ± 0.003</td></tr>
+                <tr><th scope="row">LSTM (16)</th><td>Middle</td><td>0.70 ± 0.20</td><td>0.005 ± 0.006</td><td>0.50 ± 0.32</td><td>0.004 ± 0.008</td><td>0.41 ± 0.29</td><td>0.003 ± 0.006</td></tr>
+                <tr><th scope="row">LSTM (32)</th><td>Early</td><td>0.55 ± 0.24</td><td>0.02 ± 0.04</td><td>0.39 ± 0.30</td><td>0.02 ± 0.03</td><td>0.32 ± 0.28</td><td>0.01 ± 0.03</td></tr>
+                <tr><th scope="row">LSTM (16)</th><td>Early</td><td>0.55 ± 0.24</td><td>0.03 ± 0.05</td><td>0.38 ± 0.29</td><td>0.02 ± 0.04</td><td>0.30 ± 0.25</td><td>0.02 ± 0.04</td></tr>
+                <tr><th scope="row">Conv 1D-2D (32)</th><td>Middle</td><td>0.56 ± 0.23</td><td>0.01 ± 0.02</td><td>0.33 ± 0.29</td><td>0.008 ± 0.015</td><td>0.25 ± 0.22</td><td>0.006 ± 0.011</td></tr>
+                <tr><th scope="row">Conv 1D-2D (16)</th><td>Middle</td><td>0.58 ± 0.22</td><td>0.01 ± 0.02</td><td>0.34 ± 0.30</td><td>0.009 ± 0.021</td><td>0.28 ± 0.23</td><td>0.006 ± 0.014</td></tr>
+                <tr><th scope="row">Conv 2D (32)</th><td>Early</td><td>0.38 ± 0.21</td><td>0.06 ± 0.07</td><td>0.33 ± 0.23</td><td>0.05 ± 0.06</td><td>0.32 ± 0.25</td><td>0.04 ± 0.04</td></tr>
+                <tr><th scope="row">Conv 2D (16)</th><td>Early</td><td>0.35 ± 0.21</td><td>0.09 ± 0.09</td><td>0.31 ± 0.25</td><td>0.08 ± 0.08</td><td>0.28 ± 0.23</td><td>0.05 ± 0.05</td></tr>
+              </tbody>
+            </table>
           </div>
-          <div class="media-card" id="poster">
-            <h3>Poster</h3>
-            <!-- <a class="preview" href="static/pdfs/poster.pdf"><img src="static/images/poster_preview.jpg" width="900" height="1270" loading="lazy" alt="Poster preview"></a>
-                 <p>PDF, opens in the browser.</p> -->
-            <a class="preview" href="#poster"><img src="static/images/poster_preview.svg" width="900" height="1270" loading="lazy" alt="Poster preview placeholder"></a>
+          <p class="table-note">All encoders feed a personal One-Class SVM. The highlighted row is the configuration selected for the main experiments. On narrow screens, scroll the table horizontally to compare all scenarios.</p>
+        </div>
+        <div class="prose">
+          <h3>Selecting the latent representation</h3>
+          <p>The validation analysis compares hidden-state sizes from 4 to 64 and selects 32 dimensions for the remaining experiments. The plot below reports validation F1; the table above reports test-set performance.</p>
+        </div>
+        <figure class="figure measure">
+          <div class="figure__frame">
+            <img src="static/images/latent-size.png" width="680" height="442" loading="lazy" alt="Validation mean F1 with standard-deviation error bars for hidden sizes 4, 8, 16, 24, 32, and 64 across the three walking scenarios.">
           </div>
+          <figcaption><strong>Figure 4 from the paper.</strong> Influence of latent representation size on downstream gait authentication, evaluated on the validation sets of the three scenarios.</figcaption>
+        </figure>
+        <div class="prose">
+          <h3>Scope and limitations</h3>
+          <p>This is a feasibility study in controlled treadmill conditions. Impairment is simulated with ankle weights, and gait segmentation uses an additional ankle IMU. Performance varies across participants; the paper identifies two users with consistently poor classification results. Broader real-world evaluation and investigation of these outlier profiles remain future work.</p>
         </div>
       </div>
     </section>
@@ -229,8 +314,20 @@
         <h2 class="section__title">Frequently asked questions</h2>
         <div class="faq">
           <details>
-            <summary>What is ACRONYM?</summary>
-            <div><p>Same text as the visible answer.</p></div>
+            <summary>Does the method require labelled identities or impostor data during training?</summary>
+            <div><p>The shared autoencoder learns a gait representation through unsupervised reconstruction. Each One-Class SVM is then trained on the target user&#x27;s gait segments, without negative-class examples during that training stage.</p></div>
+          </details>
+          <details>
+            <summary>Does the study use only a smartphone?</summary>
+            <div><p>Authentication features come from smartphone acceleration, angular velocity, and gravity. In this initial study, an auxiliary IMU on the right ankle provides gait-cycle boundaries that are transferred to the smartphone recordings.</p></div>
+          </details>
+          <details>
+            <summary>What do the altered walking conditions represent?</summary>
+            <div><p>All 50 participants had no motor impairment. Cases 5 and 6 use a 1 kg right-ankle weight to simulate an injury; Case 7 evaluates variable speed and walking-surface slope. These are controlled treadmill experiments.</p></div>
+          </details>
+          <details>
+            <summary>How can I access the MARCH dataset?</summary>
+            <div><p>The MARCH dataset is publicly available through the <a href="https://github.com/Malga-Vision/MARCH" target="_blank" rel="noopener noreferrer">Malga-Vision/MARCH repository on GitHub</a>.</p></div>
           </details>
         </div>
       </div>
@@ -241,12 +338,16 @@
         <h2 class="section__title">Citation</h2>
         <div class="cite">
           <button class="button cite__copy" type="button" data-copy="bibtex"><svg class="icon" aria-hidden="true"><use href="static/malga/img/icons.svg#i-copy"/></svg><span data-label>Copy</span></button>
-          <pre><code id="bibtex">@inproceedings{author2027acronym,
-  title     = {{ACRONYM}: Paper title},
-  author    = {Author, First and Author, Second},
-  booktitle = {Full proceedings title},
-  year      = {YEAR}
+          <pre><code id="bibtex">@inproceedings{bortolai2026smartphone,
+  title     = {Leveraging Smartphone Inertial Data for User Authentication},
+  author    = {Bortolai, Gabriele and Noceti, Nicoletta and Odone, Francesca},
+  booktitle = {22nd International Conference on Advanced Visual and Signal-Based Systems (AVSS)},
+  year      = {2026}
 }</code></pre>
+        </div>
+        <h3>Acknowledgements</h3>
+        <div class="prose">
+          <p>This work has been supported by the MARCH project (FA86552317074), funded by the Air Force Office of Scientific Research.</p>
         </div>
       </div>
     </section>
@@ -265,6 +366,10 @@
             <span class="related__venue">MICCAI 2026, oral</span>
             <a class="related__title" href="https://malga-vision.github.io/CDPM-Align_AcademicPage/">CDPM-Align: Multi-Scale Guidance-Aligned Diffusion Pretraining for Robust Few-Shot Anatomical Landmark Detection</a>
             <p><a href="https://github.com/Malga-Vision/CDPM-Align" target="_blank" rel="noopener noreferrer">Code</a></p>
+          </li>
+          <li aria-current="page">
+            <span class="related__venue">AVSS 2026</span>
+            <span class="related__title">Leveraging Smartphone Inertial Data for User Authentication</span><span class="related__here">this page</span>
           </li>
           <li>
             <span class="related__venue">ISBI 2026</span>
@@ -309,7 +414,7 @@
           <h2>This paper</h2>
           <ul>
             <li><a href="#cite">How to cite</a></li>
-            <li><a href="https://github.com/Malga-Vision/malga-academic-page-template" target="_blank" rel="noopener noreferrer">Source of this page</a></li>
+            <li><a href="https://github.com/GabrieleBortolai/phone-authentication" target="_blank" rel="noopener noreferrer">Source of this page</a></li>
           </ul>
         </div>
         <div>

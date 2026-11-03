@@ -17,6 +17,14 @@
       "code_repo": "CDPM-Align"
     },
     {
+      "key": "phone-authentication",
+      "venue": "AVSS 2026",
+      "title": "Leveraging Smartphone Inertial Data for User Authentication",
+      "page_repo": "phone-authentication",
+      "page_url": "https://gabrielebortolai.github.io/phone-authentication/",
+      "code_repo": null
+    },
+    {
       "key": "hip",
       "venue": "ISBI 2026",
       "title": "Automated Landmark Detection for Assessing Hip Conditions: A Cross-Modality Validation of MRI Versus X-Ray",

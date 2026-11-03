@@ -1,11 +1,27 @@
-# ACRONYM: Paper title
+# Leveraging Smartphone Inertial Data for User Authentication
 
-> One-paragraph summary for language models: what the paper does, the main result, the venue.
+> Gait-based smartphone authentication using an unsupervised LSTM autoencoder with middle fusion of acceleration, angular velocity, and gravity, followed by a personal One-Class SVM. Evaluated on the MARCH dataset in seven controlled treadmill conditions.
 
-- [Project page](https://malga-vision.github.io/malga-academic-page-template/)
-- [Code](https://github.com/Malga-Vision)
+- [Project page](https://gabrielebortolai.github.io/phone-authentication/)
+- [Paper PDF](https://gabrielebortolai.github.io/phone-authentication/static/pdfs/paper.pdf)
+- [MARCH dataset](https://github.com/Malga-Vision/MARCH)
+- [Page source](https://github.com/GabrieleBortolai/phone-authentication)
+- [Conference](https://www.avss2026.org/)
 
 ## Key facts
 
-- Venue: VENUE YEAR
-- Authors: First Author, Second Author (MaLGa-DIBRIS, University of Genoa)
+- Authors: Gabriele Bortolai, Nicoletta Noceti, Francesca Odone.
+- Affiliation: MaLGa-DIBRIS, University of Genoa, Italy.
+- Venue: AVSS 2026, Lecce, Italy.
+- Dataset: MARCH; 50 participants without motor impairment; 63,316 gait segments; seven conditions; 50 Hz sampling.
+- Acquisition: Samsung Galaxy S25 in the left back trouser pocket; five minutes per participant per condition.
+- Method: unsupervised LSTM middle-fusion autoencoder; 32-dimensional latent representation; one OCSVM per identity.
+- Splits: autoencoder 80% training and 20% validation, randomly sampled by segment; OCSVM 64% training, 16% validation, and 20% test, split sequentially. Training uses Cases 1-4.
+- Baseline (Cases 1-4): F1 0.76 +/- 0.18; FAR 0.004 +/- 0.006.
+- Simulated impairment (Cases 5-6): F1 0.53 +/- 0.31; FAR 0.002 +/- 0.003.
+- Variable speed and slope (Case 7): F1 0.44 +/- 0.28; FAR 0.002 +/- 0.003.
+- FAR values are fractions, not percentages. All results above use the LSTM (32), middle-fusion configuration.
+- Scope: controlled treadmill feasibility study. An auxiliary right-ankle IMU supplies gait-cycle boundaries; a 1 kg ankle weight simulates impairment. Results vary across participants.
+- Data access: the MARCH dataset is publicly available through the Malga-Vision/MARCH repository on GitHub, linked above.
+- This repository contains the academic project page, not the authentication implementation. The public dataset repository is linked separately.
+- Support: MARCH project (FA86552317074), Air Force Office of Scientific Research.

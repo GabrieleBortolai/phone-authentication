@@ -5,10 +5,12 @@ The blocks live between marker comments in index.html:
     <!-- FOOTER:START -->  ... <!-- FOOTER:END -->
 
 Usage:
-    python tools/render_shared.py path/to/index.html --page-repo <Repo> [--code-repo <Repo>]
+    python tools/render_shared.py path/to/index.html --page-repo <Repo> [--page-owner <Owner>] [--code-repo <Repo>]
 
 --page-repo is this page's repository name in the Malga-Vision org; it selects the
 "you are here" entry of the related list and the "page source" link in the footer.
+Use --page-owner for a page hosted outside the lab organization. A project may
+also set page_url to override the default MaLGa project URL.
 Edit tools/projects.json to add a new paper, then re-run on every page.
 """
 
@@ -45,10 +47,11 @@ def render_related(projects, org, page_repo):
         if p.get("code_repo"):
             links.append(f'<a href="{GITHUB}/{org}/{p["code_repo"]}" target="_blank" rel="noopener noreferrer">Code</a>')
         extra = f"\n            <p>{' '.join(links)}</p>" if links else ""
+        page_url = html.escape(p.get("page_url", f'{SITE}/{p["page_repo"]}/'), quote=True)
         items.append(
             "          <li>\n"
             f'            <span class="related__venue">{venue}</span>\n'
-            f'            <a class="related__title" href="{SITE}/{p["page_repo"]}/">{title}</a>{extra}\n'
+            f'            <a class="related__title" href="{page_url}">{title}</a>{extra}\n'
             "          </li>"
         )
     return (
@@ -61,12 +64,12 @@ def render_related(projects, org, page_repo):
     )
 
 
-def render_footer(org, page_repo, code_repo):
+def render_footer(org, page_repo, code_repo, page_owner=None):
     paper_links = []
     if code_repo:
         paper_links.append(f"<li>{external(f'{GITHUB}/{org}/{code_repo}', 'Code')}</li>")
     paper_links.append('<li><a href="#cite">How to cite</a></li>')
-    paper_links.append(f"<li>{external(f'{GITHUB}/{org}/{page_repo}', 'Source of this page')}</li>")
+    paper_links.append(f"<li>{external(f'{GITHUB}/{page_owner or org}/{page_repo}', 'Source of this page')}</li>")
     joined = "\n            ".join(paper_links)
     return f"""  <footer class="site-footer">
     <div class="wrap">
@@ -110,6 +113,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("index", type=Path)
     parser.add_argument("--page-repo", required=True)
+    parser.add_argument("--page-owner", help="GitHub owner of the page repository (defaults to the lab organization)")
     parser.add_argument("--code-repo")
     parser.add_argument("--projects", type=Path, default=HERE / "projects.json")
     args = parser.parse_args()
@@ -117,7 +121,7 @@ def main():
     data = json.loads(args.projects.read_text(encoding="utf-8"))
     text = args.index.read_text(encoding="utf-8")
     text = replace_block(text, "RELATED", render_related(data["projects"], data["org"], args.page_repo))
-    text = replace_block(text, "FOOTER", render_footer(data["org"], args.page_repo, args.code_repo))
+    text = replace_block(text, "FOOTER", render_footer(data["org"], args.page_repo, args.code_repo, args.page_owner))
     args.index.write_text(text, encoding="utf-8", newline="\n")
     print(f"updated {args.index}")
 
